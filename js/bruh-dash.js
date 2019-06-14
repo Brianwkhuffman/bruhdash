@@ -40,46 +40,89 @@ global.bruhdash = {
     let x = []
     for (let i=0;i<arr.length;i++){
       if (arr[i]){ //checking the "base value" of arr[i] itself
-        x.push(arr[i])
+        x.push(arr[i]) //pushes the truthy values to x
       }
     }
     return x;
   },
 
   // creates a slice of an array from the start index up to but not including the end index
-  slice: function () {
-
+  slice: function (arr, x, y) {
+    return arr.slice(x, y);
   },
 
   // returns a slice of array with n elements dropped from the beignning
-  drop: function(){
-
+  drop: function(arr, n){
+    if (typeof n === 'undefined'){
+      arr.shift();
+    }else{
+      for (let i=0;i<n;i++){
+        arr.shift()
+      }
+    }
+    return arr;
   },
 
   // returns a slice of array with n elements dropped from the end
-  dropRight: function() {
-
+  dropRight: function(arr, n) {
+    if (typeof n === 'undefined'){
+      arr.pop();
+    }else{
+      for (let i=0;i<n;i++){
+        arr.pop();
+      }
+    }
+    return arr;
   },
 
   // creates a slice of an array with n elements taken from the beginning
-  take: function () {
-
+  take: function (arr, n) {
+    if (typeof n === 'number'){
+      return arr.slice(0, n);
+    }else if (typeof n === 'undefined'){
+      return arr.slice(0, 1);
+    }
   },
 
   // creates a slice of an array with n elements taken from the end
-  takeRight: function () {
-
-  },
+  takeRight: function (arr, n) {
+    if(n === undefined){
+      var last = [arr[arr.length-1]]
+      return last
+    } else if(n === 0){
+      var empty = [];
+      return empty;
+    } else{
+      arr = arr.slice(arr.length-n, arr.length);
+      return arr;
+    }
+      
+ },
 
   // fills elements of array with specified value from the start index
   // up to but not including the end index
-  fill: function() {
-
+  fill: function(arr, val, start, end) {
+    if (start && end){ //checks if start and end are defined(truthy/falsy)
+      for (let i=start;i<end;i++){
+        arr[i] = val;
+      }
+    }else{
+    for (let i=0;i<arr.length;i++){
+      arr[i] = val;
+    }
+  }
+    return arr;
   },
 
   // removes all given values from an array
-  pull: function () {
-
+  pull: function (arr, x, y) {
+    let empty = []
+    for (let i=0;i<arr.length;i++){
+      if (arr[i] !== x  && arr[i] !== y){
+        empty.push(arr[i]);
+      }
+    }
+    return empty;
   },
 
   // removes elements of an array corresponding to the given indices
