@@ -126,18 +126,36 @@ global.bruhdash = {
   },
 
   // removes elements of an array corresponding to the given indices
-  pullAt: function () {
-
-  },
+  pullAt: function (arr, x) {
+    let empty = [];  
+  for (let i=0;i<arr.length;i++){
+      if (arr[i] !== x[0] && arr[i] !== x[1])
+        empty.push(arr[i]);
+    }
+  var newarr = empty.slice(0, 2)
+  return newarr;
+},
 
   // creates an array excluding all the specified values
-  without: function() {
-
+  without: function(arr, x, y) {
+    for (let i=0;i<arr.length;i++){
+      if (arr[i] === x || arr[i] === y){
+        arr.splice(i, 1)
+        i--;
+      }
+    }
+    return arr;
   },
 
   // returns an array with specified values excluded
-  difference: function() {
-
+  difference: function(arr, arr2) {
+    let x = [];
+    for (let i=0;i<arr.length;i++){
+      if (arr[i] !== arr2[i]){
+        x.push(arr[i]);
+      }
+    }
+    return x;
   },
 
   /*******************
@@ -145,8 +163,13 @@ global.bruhdash = {
    *******************/ 
 
   // creates an array of grouped elements
-  zip: function () {
-
+  zip: function (arr, arr2) {
+    let x = [];
+    for (let i=0;i<arr.length;i++){
+     let newarr = [arr[i], arr2[i]];
+     x.push(newarr);
+    }
+    return x;
   },
 
   // creates an array of grouped elements in their pre-zip configuration
