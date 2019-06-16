@@ -173,19 +173,36 @@ global.bruhdash = {
   },
 
   // creates an array of grouped elements in their pre-zip configuration
-  unzip: function () {
-
+  unzip: function (arr) {
+    let x = [];
+    let y = [];
+    for (let i=0;i<arr.length;i++){
+      x.push(arr[i][0]);
+      y.push(arr[i][1]);
+    }
+    let newarr = [x, y];
+    return newarr;
   },
 
   // creates an array of elements into groups of length of specified size
-  chunk: function(){
-
+  chunk: function(arr, size){
+    let empty = [];
+    let numChunk = Math.ceil(arr.length/size);
+    if (arr && size){
+      for (let i=0;i<numChunk;i++){
+        empty.push(arr.splice(0, size));
+      }
+      return empty;
+    }else if (size === 0){
+      return empty;
+    }else if (size >= arr.length){
+      return arr;
+    }
   },
 
   // iterates over elements of a collection and invokes iteratee for each element
   // Note: this should work for arrays and objects
   forEach: function() {
-
   },
 
   // creates an array of values by running each element in collection thru the iteratee
