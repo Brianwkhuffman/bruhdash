@@ -198,17 +198,19 @@ global.bruhdash = {
     }else if (size >= arr.length){
       return arr;
     }
-  },
+  }, //this clears all parameters but I don't think it should??
 
   // iterates over elements of a collection and invokes iteratee for each element
   // Note: this should work for arrays and objects
-  forEach: function() {
+  forEach: function(x, func) {
+    for (let i in x){
+     func(x[i])
+    }
   },
 
   // creates an array of values by running each element in collection thru the iteratee
   // Note: this should work for arrays and objects
-  map: function() {
-
+  map: function(x, func) {
   },
 
   /*************************
